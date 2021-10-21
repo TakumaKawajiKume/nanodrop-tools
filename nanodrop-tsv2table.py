@@ -12,7 +12,7 @@ root = tk.Tk()
 root.withdraw()
 
 COLUMN = 2
-OUTPUT_DELIMITER = '\u0009'
+OUTPUT_DELIMITER = '\u0009' #Tab
 
 loop = True
 while loop:
@@ -25,6 +25,7 @@ while loop:
     data = csv.reader(ifile, delimiter='\t')
     odata = []
     
+    ### Keep wavelength after first column
     # j = 0
     # for row in data:
     #     if len(row) == 0:
@@ -39,6 +40,8 @@ while loop:
     #             odata[j].extend(row)
     #             j += 1
     
+    
+    ### Remove wavelength after first column
     j = 0
     for row in data:
         if len(row) == 0:
@@ -56,6 +59,7 @@ while loop:
                 else:
                     odata[j].append(row[1])
                     j += 1
+    
     for row in odata:
         for cell in row:
             ofile.write(cell + OUTPUT_DELIMITER)
